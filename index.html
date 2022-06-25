@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    Tech tree
+</head>
+<body>
+    <style>
+        html,
+        body,
+        #sigma-container {
+            height: 100%;
+            width: 100%;
+            inset: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <div id="sigma-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.2.0/sigma.min.js"></script>
+    <script type="module">
+        import Graph from 'https://cdn.skypack.dev/graphology';
+        import { parse } from 'https://cdn.skypack.dev/graphology-gexf/browser';
+        import ForceSupervisor from 'https://cdn.skypack.dev/graphology-layout-forceatlas2/worker';
+        fetch("./ds.gexf")
+            .then((res) => res.text())
+            .then((gexf) => {
+                // Parse GEXF string:
+                const graph = parse(Graph, gexf);
+
+                // Retrieve some useful DOM elements:
+                const container = document.getElementById("sigma-container");
+                const renderer = new Sigma(graph, container);
+
+            });
+        // Create the sigma
+    </script>
+</body>
+
+</html>
